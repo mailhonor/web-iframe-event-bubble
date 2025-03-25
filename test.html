@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <script src="./dist/index.mjs"></script>
+    <script>
+        var idplus;
+        var infoDom;
+        var iframeDom;
+
+        var eventTypes = [
+            "click",
+            "dblclick",
+            "mousedown",
+            "mouseup",
+            "mouseout",
+            "mouseover",
+            "mouseenter",
+            "mouseleave",
+            "keydown",
+            "keyup",
+            "keypress",
+        ];
+
+        function showInfo(eventType) {
+            idplus++;
+            var ip = idplus;
+            var event = window.event;
+            var keyCode = event.keyCode;
+            var button = event.button;
+            var msg = ip + " " + eventType + ": ";
+            msg += "ctrl=" + event.ctrlKey;
+            msg += ", shift=" + event.shiftKey;
+            if (keyCode) {
+                msg += ", keyCode=" + keyCode;
+            }
+            if (button) {
+                msg += ", button=" + button;
+            }
+            infoDom.setAttribute("value", msg);
+        }
+
+        function enableBubble(enable) {
+            var tf = enable ? true : false;
+            bubbleClick(iframeDom, tf);
+            bubbleClick(iframeDom, tf);
+            bubbleDblclick(iframeDom, tf);
+            bubbleMousedown(iframeDom, tf);
+            bubbleMouseout(iframeDom, tf);
+            bubbleMouseover(iframeDom, tf);
+            bubbleMouseup(iframeDom, tf);
+            bubbleKeydown(iframeDom, tf);
+            bubbleKeyup(iframeDom, tf);
+            bubbleKeypress(iframeDom, tf);
+        }
+
+        function init() {
+            idplus = 1;
+            infoDom = document.getElementById("info");
+            iframeDom = document.getElementById("iframe");
+            var iframeDocument = iframeDom.contentWindow.document;
+            iframeDocument.open();
+            iframeDocument.write('<div style="border:1px solid black;margin:30px;width:100px;height:100px;"></div>');
+            iframeDocument.close();
+            eventTypes.forEach(t => {
+                document.addEventListener(t, () => { showInfo(t); });
+            });
+
+        }
+    </script>
+
+</head>
+
+<body onload="init()" style="padding: 50px;text-align: center;">
+    <div>
+        <input onclick="enableBubble(1)" type="button" value="enanble iframe event bubble" />
+        <input onclick="enableBubble(0)" type="button" value="disable iframe event bubble" />
+    </div>
+    <hr />
+    <div>
+        <input id="info" value="" style="width: 500px;" />
+    </div>
+    <hr />
+    <iframe id="iframe" width="500" height="200" border="1"></iframe>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{
+    "name": "iframe-event-bubble",
+    "version": "2.1.2",
+    "description": "iframe event bubble",
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.js",
+    "scripts": {
+        "build": "node script/build.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mailhonor/web-iframe-event-bubble.git"
+    },
+    "keywords": [
+        "iframe",
+        "event",
+        "bubble"
+    ],
+    "author": {
+        "name": "linuxmail",
+        "email": "eli960@qq.com",
+        "url": "https://github.com/mailhonor/web-iframe-event-bubble"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mailhonor/web-iframe-event-bubble/issues"
+    },
+    "homepage": "https://github.com/mailhonor/web-iframe-event-bubble/",
+    "devDependencies": {
+        "@types/node": "^20.6.3",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {},
+    "files": [
+        "dist/"
+    ]
+}
